@@ -18,6 +18,24 @@ function init(){
     pointlight.position.x = 20;
     pointlight.position.y += 30;
 
+    // const dir = new THREE.Vector3(1, 2, 0);
+    // dir normalize();
+
+    const axesHelper = new THREE.Helper(5);
+    scene.add( axesHelper );
+
+    const sphere = new THREE.Sphere.Geometry();
+    const object = new THREE.Mesh(sphere, new THREE.MeshBasicMaterial(0xff0000));
+    const box = new THREE.BoxHelper(object, 0xffff00);
+    scene.add(box);
+
+    const box1 = new THREE.Box3();
+    box.requestAnimationFrame( new THREE.Vector3(1, 1, 1,), new THREE.Vector3(2, 1, 3));
+
+    const origin = new THREE.Vector3(0, 0, 0);
+    const length = 1;
+    const hex = 0xffff00;
+
     scene.add(plane);
     scene.add(pointlight);
 
