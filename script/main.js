@@ -1,4 +1,5 @@
 import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 // Basic Scene Creation
 function init() {
@@ -32,6 +33,40 @@ function init() {
     circle.rotation.x += 180;
     circle.rotation.y += 90 ;
     circle.rotation.z += 100;
+
+    const loader = new GLTFLoader();
+
+    loader.load('path/to/model.glb', function (gltf) {
+        scene.add(gltf.scene);
+    }, undefined, function (error) {
+        console.error(error);
+    });
+
+
+    // Instantiate a loader
+    const loader1 = new GLTFLoader();
+
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('/examples/jsm/libs/draco/');
+    loader.setDRACOLoader(dracoLoader);
+
+    loader.load(
+        'models/gltf/duck/duck.gltf',
+        function (gltf) {
+            scene.add(gltf.scene);
+            gltf.animations; 
+            gltf.scene; 
+            gltf.scenes; 
+            gltf.cameras; 
+            gltf.asset; 
+        },
+        function (xhr) {
+            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        function (error) {
+            console.log('An error happened');
+        }
+    );
     
     scene.add(mesh);
     scene.add(getPointLight);
