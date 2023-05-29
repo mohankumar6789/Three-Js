@@ -34,7 +34,7 @@ function init() {
     circle.rotation.y += 90 ;
     circle.rotation.z += 100;
 
-    const loader = new GLTFLoader();
+    var const loader = new GLTFLoader();
 
     loader.load('path/to/model.glb', function (gltf) {
         scene.add(gltf.scene);
